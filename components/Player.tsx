@@ -3,9 +3,39 @@ import * as React from "react";
 import { useCallback, useEffect, useState } from "react";
 import { Button, StyleSheet, View } from "react-native";
 
+function getStatusMessage(playbackStatus: AVPlaybackStatus) {
+  if (!playbackStatus.isLoaded) {
+    if (playbackStatus.error !== undefined) {
+      return "[오류] 다시 시도해주세요";
+    }
+    return "생방송 불러오는 중...";
+  }
+
+  if (playbackStatus.isPlaying) {
+    return "스트리밍 중";
+  }
+
+  if (playbackStatus.isBuffering) {
+    return "스트리밍 불러오는 중...";
+  }
+
+  if (playbackStatus.didJustFinish) {
+    return "생방송이 종료되었습니다";
+  }
+
+  return "생방송 듣기";
+}
+
 export function Player() {
-  const [message, setMessage] = useState("방송 듣기");
+  const [message, setMessage] = useState("생방송 듣기");
   const [sound, setSound] = useState<Audio.Sound>();
+
+  const handlePlaybackStatusUpdate = useCallback(
+    (playbackStatus: AVPlaybackStatus) => {
+      setMessage(getStatusMessage(playbackStatus));
+    },
+    []
+  );
 
   const toggleLive = useCallback(async () => {
     if (sound !== undefined) {
@@ -13,30 +43,23 @@ export function Player() {
       return;
     }
 
-    setMessage("생방송을 불러오고 있습니다...");
-    const { sound: newSound } = await Audio.Sound.createAsync({
+    const newSound = new Audio.Sound();
+    newSound.setOnPlaybackStatusUpdate(handlePlaybackStatusUpdate);
+    await newSound.loadAsync({
       uri: "https://streaming.radio.co/s2ce4fad17/listen",
     });
     setSound(newSound);
-  }, [sound]);
-
-  const handlePlaybackStatusUpdate = useCallback(
-    (playbackStatus: AVPlaybackStatus) => {
-      playbackStatus.isLoaded;
-    },
-    []
-  );
+  }, [sound, handlePlaybackStatusUpdate]);
 
   useEffect(() => {
     if (sound === undefined) {
+      setMessage("생방송 듣기");
       return;
     }
 
     sound.setOnPlaybackStatusUpdate(handlePlaybackStatusUpdate);
-    setMessage("생방송 청취 중");
     sound.playAsync();
     return () => {
-      setMessage("생방송 듣기");
       sound.unloadAsync();
     };
   }, [sound]);
