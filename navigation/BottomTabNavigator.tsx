@@ -5,8 +5,8 @@ import * as React from "react";
 import Colors from "../constants/Colors";
 import useColorScheme from "../hooks/useColorScheme";
 import { LiveScreen } from "../screens/LiveScreen";
-import TabTwoScreen from "../screens/TabTwoScreen";
-import { BottomTabParamList, LiveParamList, TabTwoParamList } from "../types";
+import ReplayScreen from "../screens/ReplayScreen";
+import { BottomTabParamList, LiveParamList, ReplayParamList } from "../types";
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -15,22 +15,24 @@ export default function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="생방송"
+      initialRouteName="Live"
       tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}
     >
       <BottomTab.Screen
-        name="생방송"
+        name="Live"
         component={LiveNavigator}
         options={{
+          title: "생방송",
           tabBarIcon: ({ color }) => (
             <TabBarIcon name="ios-code" color={color} />
           ),
         }}
       />
       <BottomTab.Screen
-        name="TabTwo"
+        name="Replay"
         component={TabTwoNavigator}
         options={{
+          title: "다시 듣기",
           tabBarIcon: ({ color }) => (
             <TabBarIcon name="ios-code" color={color} />
           ),
@@ -57,7 +59,7 @@ function LiveNavigator() {
   return (
     <LiveStack.Navigator>
       <LiveStack.Screen
-        name="Live"
+        name="LiveScreen"
         component={LiveScreen}
         options={{ headerTitle: "생방송" }}
       />
@@ -65,15 +67,15 @@ function LiveNavigator() {
   );
 }
 
-const TabTwoStack = createStackNavigator<TabTwoParamList>();
+const TabTwoStack = createStackNavigator<ReplayParamList>();
 
 function TabTwoNavigator() {
   return (
     <TabTwoStack.Navigator>
       <TabTwoStack.Screen
-        name="TabTwoScreen"
-        component={TabTwoScreen}
-        options={{ headerTitle: "Tab Two Title" }}
+        name="ReplayScreen"
+        component={ReplayScreen}
+        options={{ headerTitle: "다시 듣기" }}
       />
     </TabTwoStack.Navigator>
   );

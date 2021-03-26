@@ -4,14 +4,14 @@ export type RootStackParamList = {
 };
 
 export type BottomTabParamList = {
-  생방송: undefined;
-  TabTwo: undefined;
+  Live: undefined;
+  Replay: undefined;
 };
 
 export type LiveParamList = {
-  Live: undefined;
+  LiveScreen: undefined;
 };
 
-export type TabTwoParamList = {
-  TabTwoScreen: undefined;
+export type ReplayParamList = {
+  ReplayScreen: undefined;
 };
