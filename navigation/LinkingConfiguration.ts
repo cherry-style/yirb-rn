@@ -6,9 +6,9 @@ export default {
     screens: {
       Root: {
         screens: {
-          Listening: {
+          Live: {
             screens: {
-              home: "home",
+              LiveScreen: "live",
             },
           },
           TabTwo: {

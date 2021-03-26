@@ -4,9 +4,9 @@ import { createStackNavigator } from "@react-navigation/stack";
 import * as React from "react";
 import Colors from "../constants/Colors";
 import useColorScheme from "../hooks/useColorScheme";
-import { HomeScreen } from "../screens/HomeScreen";
+import { LiveScreen } from "../screens/LiveScreen";
 import TabTwoScreen from "../screens/TabTwoScreen";
-import { BottomTabParamList, HomeParamList, TabTwoParamList } from "../types";
+import { BottomTabParamList, LiveParamList, TabTwoParamList } from "../types";
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -15,12 +15,12 @@ export default function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="Home"
+      initialRouteName="생방송"
       tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}
     >
       <BottomTab.Screen
-        name="Home"
-        component={HomeNavigator}
+        name="생방송"
+        component={LiveNavigator}
         options={{
           tabBarIcon: ({ color }) => (
             <TabBarIcon name="ios-code" color={color} />
@@ -51,17 +51,17 @@ function TabBarIcon(props: {
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
 // https://reactnavigation.org/docs/tab-based-navigation#a-stack-navigator-for-each-tab
-const HomeStack = createStackNavigator<HomeParamList>();
+const LiveStack = createStackNavigator<LiveParamList>();
 
-function HomeNavigator() {
+function LiveNavigator() {
   return (
-    <HomeStack.Navigator>
-      <HomeStack.Screen
-        name="Home"
-        component={HomeScreen}
-        options={{ headerTitle: "Home" }}
+    <LiveStack.Navigator>
+      <LiveStack.Screen
+        name="Live"
+        component={LiveScreen}
+        options={{ headerTitle: "생방송" }}
       />
-    </HomeStack.Navigator>
+    </LiveStack.Navigator>
   );
 }
 

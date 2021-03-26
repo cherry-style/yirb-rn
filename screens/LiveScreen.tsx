@@ -5,7 +5,7 @@ import { GiftedChat } from "react-native-gifted-chat";
 import { Player } from "../components/Player";
 import { View } from "../components/Themed";
 
-export function HomeScreen() {
+export function LiveScreen() {
   const [messages, setMessages] = useState<any[]>([]);
 
   useEffect(() => {

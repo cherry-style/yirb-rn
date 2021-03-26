@@ -4,12 +4,12 @@ export type RootStackParamList = {
 };
 
 export type BottomTabParamList = {
-  Home: undefined;
+  생방송: undefined;
   TabTwo: undefined;
 };
 
-export type HomeParamList = {
-  Home: undefined;
+export type LiveParamList = {
+  Live: undefined;
 };
 
 export type TabTwoParamList = {
