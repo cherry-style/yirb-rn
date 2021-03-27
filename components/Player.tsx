@@ -20,10 +20,10 @@ function getStatusMessage(playbackStatus: AVPlaybackStatus) {
   }
 
   if (playbackStatus.didJustFinish) {
-    return "생방송이 종료되었습니다";
+    return "방송이 종료되었습니다";
   }
 
-  return "생방송 듣기";
+  return "방송 송출을 기다리고 있습니다...";
 }
 
 export function Player() {
@@ -53,14 +53,13 @@ export function Player() {
 
   useEffect(() => {
     if (sound === undefined) {
-      setMessage("생방송 듣기");
       return;
     }
 
     sound.setOnPlaybackStatusUpdate(handlePlaybackStatusUpdate);
     sound.playAsync();
     return () => {
-      sound.unloadAsync();
+      sound.unloadAsync().then(() => setMessage("생방송 듣기"));
     };
   }, [sound]);
 
