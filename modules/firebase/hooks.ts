@@ -5,10 +5,9 @@ interface FirebaseListOptions {
   limitToLast?: number;
 }
 
-export function useFirebaseList<T extends { id: string; [key: string]: any }>(
-  path: string,
-  { limitToLast }: FirebaseListOptions = {}
-) {
+export function useFirebaseList<
+  T extends { id: string; pending?: boolean; [key: string]: any }
+>(path: string, { limitToLast }: FirebaseListOptions = {}) {
   const [items, setItems] = useState<T[]>([]);
 
   useEffect(() => {
@@ -34,6 +33,7 @@ export function useFirebaseList<T extends { id: string; [key: string]: any }>(
         ...items,
         {
           id: String(Math.random()),
+          pending: true,
           ...item,
         } as any,
       ]);

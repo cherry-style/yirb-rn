@@ -3,4 +3,5 @@ export interface Message {
   nickname: string;
   text: string;
   timestamp: any;
+  pending?: true;
 }
