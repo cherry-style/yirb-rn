@@ -1,7 +1,8 @@
+import { Button } from "@ui-kitten/components";
 import * as React from "react";
 import { useCallback } from "react";
 import { StyleSheet } from "react-native";
-import { GiftedChat, IMessage } from "react-native-gifted-chat";
+import { GiftedChat, IMessage, Send } from "react-native-gifted-chat";
 import { Player } from "../components/Player";
 import { Screen } from "../components/Screen";
 import { View } from "../components/Themed";
@@ -30,6 +31,14 @@ export function LiveScreen() {
         <GiftedChat<IMessage>
           renderAvatarOnTop
           renderUsernameOnMessage
+          placeholder="메세지를 입력하세요"
+          renderSend={(props) => (
+            <Send {...props}>
+              <Button pointerEvents="none" appearance="ghost">
+                보내기
+              </Button>
+            </Send>
+          )}
           messages={items.map((message) => ({
             _id: message.id,
             user: {
