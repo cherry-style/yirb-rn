@@ -5,10 +5,12 @@ import { GiftedChat, IMessage } from "react-native-gifted-chat";
 import { Player } from "../components/Player";
 import { View } from "../components/Themed";
 import { useMessageList } from "../hooks/useMessageList";
+import { useNickname } from "../hooks/useNickname";
 import { FIREBASE_SERVER_TIMESTAMP } from "../modules/firebase";
 
 export function LiveScreen() {
   const { items, addItem } = useMessageList();
+  const [nickname] = useNickname();
 
   const onSend = useCallback((messages: IMessage[]) => {
     messages.forEach((message) => {
@@ -24,6 +26,8 @@ export function LiveScreen() {
     <View style={styles.container}>
       <Player />
       <GiftedChat<IMessage>
+        renderAvatarOnTop
+        renderUsernameOnMessage
         messages={items.map((message) => ({
           _id: message.id,
           user: {
@@ -35,7 +39,8 @@ export function LiveScreen() {
         }))}
         onSend={(messages) => onSend(messages)}
         user={{
-          _id: "처리",
+          _id: nickname,
+          name: nickname,
         }}
       />
     </View>

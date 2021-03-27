@@ -6,7 +6,13 @@ import Colors from "../constants/Colors";
 import useColorScheme from "../hooks/useColorScheme";
 import { LiveScreen } from "../screens/LiveScreen";
 import ReplayScreen from "../screens/ReplayScreen";
-import { BottomTabParamList, LiveParamList, ReplayParamList } from "../types";
+import { SettingsScreen } from "../screens/SettingsScreen";
+import {
+  BottomTabParamList,
+  LiveParamList,
+  ReplayParamList,
+  SettingsParamList,
+} from "../types";
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -23,18 +29,24 @@ export default function BottomTabNavigator() {
         component={LiveNavigator}
         options={{
           title: "생방송",
-          tabBarIcon: ({ color }) => (
-            <TabBarIcon name="ios-code" color={color} />
-          ),
+          tabBarIcon: ({ color }) => <TabBarIcon name="radio" color={color} />,
         }}
       />
       <BottomTab.Screen
         name="Replay"
-        component={TabTwoNavigator}
+        component={ReplayNavigator}
         options={{
           title: "다시 듣기",
+          tabBarIcon: ({ color }) => <TabBarIcon name="albums" color={color} />,
+        }}
+      />
+      <BottomTab.Screen
+        name="Settings"
+        component={SettingsNavigator}
+        options={{
+          title: "프로필",
           tabBarIcon: ({ color }) => (
-            <TabBarIcon name="ios-code" color={color} />
+            <TabBarIcon name="person-circle" color={color} />
           ),
         }}
       />
@@ -67,16 +79,30 @@ function LiveNavigator() {
   );
 }
 
-const TabTwoStack = createStackNavigator<ReplayParamList>();
+const ReplayStack = createStackNavigator<ReplayParamList>();
 
-function TabTwoNavigator() {
+function ReplayNavigator() {
   return (
-    <TabTwoStack.Navigator>
-      <TabTwoStack.Screen
+    <ReplayStack.Navigator>
+      <ReplayStack.Screen
         name="ReplayScreen"
         component={ReplayScreen}
         options={{ headerTitle: "다시 듣기" }}
       />
-    </TabTwoStack.Navigator>
+    </ReplayStack.Navigator>
+  );
+}
+
+const SettingsStack = createStackNavigator<SettingsParamList>();
+
+function SettingsNavigator() {
+  return (
+    <SettingsStack.Navigator>
+      <SettingsStack.Screen
+        name="SettingsScreen"
+        component={SettingsScreen}
+        options={{ headerTitle: "프로필" }}
+      />
+    </SettingsStack.Navigator>
   );
 }

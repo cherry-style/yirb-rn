@@ -6,6 +6,7 @@ export type RootStackParamList = {
 export type BottomTabParamList = {
   Live: undefined;
   Replay: undefined;
+  Settings: undefined;
 };
 
 export type LiveParamList = {
@@ -14,4 +15,8 @@ export type LiveParamList = {
 
 export type ReplayParamList = {
   ReplayScreen: undefined;
+};
+
+export type SettingsParamList = {
+  SettingsScreen: undefined;
 };
