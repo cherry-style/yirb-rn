@@ -3,6 +3,7 @@ import { useCallback } from "react";
 import { StyleSheet } from "react-native";
 import { GiftedChat, IMessage } from "react-native-gifted-chat";
 import { Player } from "../components/Player";
+import { Screen } from "../components/Screen";
 import { View } from "../components/Themed";
 import { useMessageList } from "../hooks/useMessageList";
 import { useNickname } from "../hooks/useNickname";
@@ -23,27 +24,29 @@ export function LiveScreen() {
   }, []);
 
   return (
-    <View style={styles.container}>
-      <Player />
-      <GiftedChat<IMessage>
-        renderAvatarOnTop
-        renderUsernameOnMessage
-        messages={items.map((message) => ({
-          _id: message.id,
-          user: {
-            _id: message.nickname,
-            name: message.nickname,
-          },
-          text: message.text,
-          createdAt: new Date(message.timestamp),
-        }))}
-        onSend={(messages) => onSend(messages)}
-        user={{
-          _id: nickname,
-          name: nickname,
-        }}
-      />
-    </View>
+    <Screen title="생방송">
+      <View style={styles.container}>
+        <Player />
+        <GiftedChat<IMessage>
+          renderAvatarOnTop
+          renderUsernameOnMessage
+          messages={items.map((message) => ({
+            _id: message.id,
+            user: {
+              _id: message.nickname,
+              name: message.nickname,
+            },
+            text: message.text,
+            createdAt: new Date(message.timestamp),
+          }))}
+          onSend={(messages) => onSend(messages)}
+          user={{
+            _id: nickname,
+            name: nickname,
+          }}
+        />
+      </View>
+    </Screen>
   );
 }
 

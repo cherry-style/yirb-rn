@@ -11,9 +11,14 @@ export default {
               LiveScreen: "live",
             },
           },
-          TabTwo: {
+          Replay: {
             screens: {
-              TabTwoScreen: "two",
+              ReplayScreen: "replay",
+            },
+          },
+          Settings: {
+            screens: {
+              SettingsScreen: "settings",
             },
           },
         },
