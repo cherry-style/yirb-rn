@@ -17,7 +17,7 @@ export default function App() {
   const colorScheme = useColorScheme();
 
   if (!isLoadingComplete) {
-    return null;
+    return "";
   } else {
     return (
       <>

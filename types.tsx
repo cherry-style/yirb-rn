@@ -1,4 +1,3 @@
 export type RootStackParamList = {
-  Root: undefined;
-  NotFound: undefined;
+  listen: undefined;
 };

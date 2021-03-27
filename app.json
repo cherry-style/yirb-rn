@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "yirb-rn",
-    "slug": "yirb-rn",
+    "name": "yirbapp",
+    "slug": "yirbapp",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "myapp",
+    "scheme": "yirbapp",
     "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/images/splash.png",
@@ -17,18 +17,23 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
+      "bundleIdentifier": "com.cheolee.yirbapp",
+      "buildNumber": "2.0.0",
       "supportsTablet": true,
       "infoPlist": {
         "UIBackgroundModes": ["audio"]
       }
     },
     "android": {
+      "package": "com.cheolee.yirbapp",
+      "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       }
     },
     "web": {
+      "startUrl": "/listen",
       "favicon": "./assets/images/favicon.png"
     }
   }
