@@ -2,7 +2,7 @@
   "expo": {
     "name": "yirbapp",
     "slug": "yirbapp",
-    "version": "1.0.0",
+    "version": "2.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "yirbapp",
@@ -18,7 +18,7 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "bundleIdentifier": "com.cheolee.yirbapp",
-      "buildNumber": "2.0.0",
+      "buildNumber": "1",
       "supportsTablet": true,
       "infoPlist": {
         "UIBackgroundModes": ["audio"]
